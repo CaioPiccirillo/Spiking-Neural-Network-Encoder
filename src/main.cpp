@@ -4,6 +4,6 @@
 
 int main(int argc, char *argv[])
 {
-    SNNE *encoder = new SNNE(256,SNNE::Mode::Rate);
+    SNNE *encoder = new SNNE(256);
     std::cout << "Deu certo!";
 }

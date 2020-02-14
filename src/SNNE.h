@@ -2,6 +2,9 @@
 #define _SNNENCODER_H
 #include <iostream>
 #include <vector>
+
+// Time defined in milliseconds
+#define SPIKE_TIME_ON 100 
 class SNNE
 {
 private:
@@ -31,6 +34,8 @@ public:
     void Stop();
     // Function used to set mode of operation
     void SetMode(int neuron_position, SNNE::Mode neuron_mode);
+    // Function used to set multiple neurons to same mode of operation
+    void SetMode(std::vector<int> neuron_position, SNNE::Mode neuron_mode);
 
     SNNE(int number_of_neurons);
     ~SNNE();
