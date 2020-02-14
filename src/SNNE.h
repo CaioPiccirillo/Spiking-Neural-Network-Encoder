@@ -4,7 +4,7 @@
 #include <vector>
 
 // Time defined in milliseconds
-#define SPIKE_TIME_ON 100 
+#define SPIKE_DURATION 100 
 class SNNE
 {
 private:

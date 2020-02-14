@@ -1,11 +1,4 @@
-class Phase
-{
-private:
-    /* data */
-public:
-    Phase(/* args */);
-    ~Phase();
-};
+#include "Phase.h"
 
 Phase::Phase(/* args */)
 {
