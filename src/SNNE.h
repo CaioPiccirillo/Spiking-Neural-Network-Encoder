@@ -2,32 +2,31 @@
 #define _SNNENCODER_H
 #include <iostream>
 #include <vector>
+#include "Rate.h"
 
-// Time defined in milliseconds
-#define SPIKE_DURATION 100 
 class SNNE
 {
 private:
-    // 
+    //
     std::vector<int> neuron_trace;
     //
-    std::vector<int> neuron_output; 
+    std::vector<bool> neuron_output;
     //
-    std::vector<int> neuron_mode; 
+    std::vector<int> neuron_mode;
 
 public:
     enum Mode
     {
-        Rate,
-        Phase,
-        Population
+        RateCode,
+        PhaseCode,
+        PopulationCode
     };
     struct Output
     {
         //
         std::vector<int> neuron_trace;
         //
-        std::vector<int> neuron_output; 
+        std::vector<bool> neuron_output;
     };
 
     void Start();

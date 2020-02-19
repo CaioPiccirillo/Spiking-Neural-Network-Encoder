@@ -7,11 +7,13 @@ SNNE::SNNE(int number_of_neurons)
 }
 
 SNNE::~SNNE()
-{
+{ /* data */
 }
 
 void SNNE::Start()
 {
+    Rate *rate = new Rate(&(this->neuron_trace), &(this->neuron_output));
+    rate->Start();
 }
 
 void SNNE::Stop()
@@ -37,7 +39,6 @@ void SNNE::SetMode(std::vector<int> neuron_position, SNNE::Mode mode)
     for (std::vector<int>::size_type i = 0; i < neuron_position.size(); i++)
     {
         // Use loop to set all neuron mode trough this->setMode(int, SNNE::Mode)
-        this->SetMode(neuron_position[i],mode);
+        this->SetMode(neuron_position[i], mode);
     }
-    
 }
