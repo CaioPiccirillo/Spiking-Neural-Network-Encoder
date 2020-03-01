@@ -1,8 +1,13 @@
 #ifndef _SNNENCODER_H
 #define _SNNENCODER_H
+
 #include <iostream>
 #include <vector>
+#include <chrono>
+#include "Phase.h"
+#include "Population.h"
 #include "Rate.h"
+#include "Neuron.h"
 
 class SNNE
 {
@@ -12,7 +17,31 @@ private:
     //
     std::vector<bool> neuron_output;
     //
-    std::vector<int> neuron_mode;
+    std::vector<Neuron> neurons;
+
+    class Timer
+    {
+    private:
+        /* data */
+    public:
+        Timer(/* args */){
+
+        };
+        ~Timer(){
+
+        };
+        // Return elasped time in microseconds
+        int64_t ElapsedTime()
+        {
+            auto now = std::chrono::steady_clock::now();
+            auto duration = now.time_since_epoch();
+            auto micros = std::chrono::duration_cast<std::chrono::microseconds>(duration).count();
+            return micros;
+        }
+    };
+
+    // Timer used to track neurons
+    SNNE::Timer timer;
 
 public:
     enum Mode

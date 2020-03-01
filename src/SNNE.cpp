@@ -2,8 +2,14 @@
 
 SNNE::SNNE(int number_of_neurons)
 {
+    // Resize vectors to match sizes
     this->neuron_output.resize(number_of_neurons);
     this->neuron_trace.resize(number_of_neurons);
+    this->neurons.resize(number_of_neurons);
+    // Begin outputs with zero
+    std::fill(this->neuron_output.begin(), this->neuron_output.end(), 0);
+
+    std::cout << timer.ElapsedTime() << std::endl;
 }
 
 SNNE::~SNNE()
@@ -12,8 +18,6 @@ SNNE::~SNNE()
 
 void SNNE::Start()
 {
-    Rate *rate = new Rate(&(this->neuron_trace), &(this->neuron_output));
-    rate->Start();
 }
 
 void SNNE::Stop()
@@ -23,14 +27,32 @@ void SNNE::Stop()
 void SNNE::SetMode(int neuron_position, SNNE::Mode mode)
 {
     // Check if position exists
-    if (neuron_position > this->neuron_mode.size())
+    if (neuron_position > this->neurons.size())
     {
         std::cout << "No neuron with such position: " << neuron_position << std::endl;
         return;
     }
     else
     {
-        this->neuron_mode[(std::vector<int>::size_type)neuron_position] = mode;
+        switch (mode)
+        {
+        case SNNE::Mode::RateCode:
+            // TODO: Optimize using dynamic allocation of memory
+            this->neurons[neuron_position] = Rate((this->neuron_trace[neuron_position]), (this->neuron_output[neuron_position]));
+            break;
+        case SNNE::Mode::PhaseCode:
+            // TODO: Optimize using dynamic allocation of memory
+            this->neurons[neuron_position] = Phase((this->neuron_trace[neuron_position]), (this->neuron_output[neuron_position]));
+            break;
+        case SNNE::Mode::PopulationCode:
+            // TODO: Optimize using dynamic allocation of memory
+            this->neurons[neuron_position] = Population((this->neuron_trace[neuron_position]), (this->neuron_output[neuron_position]));
+            break;
+
+        default:
+            std::cout << "Wrong neuron mode!" << std::endl;
+            break;
+        }
     }
 }
 

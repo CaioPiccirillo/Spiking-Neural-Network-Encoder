@@ -1,20 +1,23 @@
+#ifndef _RATE_H
+#define _RATE_H
+
 #include <vector>
 #include <chrono>
 #include <iostream>
+#include "Neuron.h"
 
-// Time defined in milliseconds
-#define SPIKE_DURATION 100
-
-class Rate
+class Rate : public Neuron
 {
 private:
     //
-    std::vector<int> *neuron_trace;
+    int neuron_trace;
     //
-    std::vector<bool> *neuron_output;
+    bool neuron_output;
 
 public:
-    Rate(std::vector<int> *neuron_trace, std::vector<bool> *neuron_output);
+    Rate(int neuron_trace, bool neuron_output);
     ~Rate();
     void Start();
 };
+
+#endif 

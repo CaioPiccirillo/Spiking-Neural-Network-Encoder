@@ -1,6 +1,6 @@
 #include "Phase.h"
 
-Phase::Phase(/* args */)
+Phase::Phase(int neuron_trace, bool neuron_output)
 {
 }
 

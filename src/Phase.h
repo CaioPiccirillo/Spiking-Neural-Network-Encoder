@@ -1,8 +1,10 @@
-class Phase
+#include "Neuron.h"
+
+class Phase : public Neuron
 {
 private:
     /* data */
 public:
-    Phase(/* args */);
+    Phase(int neuron_trace, bool neuron_output);
     ~Phase();
 };
