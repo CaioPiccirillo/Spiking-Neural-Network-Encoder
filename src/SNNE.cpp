@@ -34,10 +34,12 @@ void SNNE::SetMode(int neuron_position, SNNE::Mode mode)
     }
     else
     {
+        std::cout << "Setting neuron number " << neuron_position;
         switch (mode)
         {
         case SNNE::Mode::RateCode:
             // TODO: Optimize using dynamic allocation of memory
+            std::cout << " to rate code mode" << std::endl;
             this->neurons[neuron_position] = Rate((this->neuron_trace[neuron_position]), (this->neuron_output[neuron_position]));
             break;
         case SNNE::Mode::PhaseCode:
