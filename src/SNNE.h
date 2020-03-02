@@ -14,12 +14,13 @@ class SNNE
 private:
     //
     std::vector<int> neuron_trace;
-    //
+    // TODO: Optimize this output
     std::vector<char> neuron_output;
     //
     std::vector<Neuron *> neurons;
     // Used to check running state
     bool running;
+    // Definition of timer
     class Timer
     {
     private:
