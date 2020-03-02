@@ -15,10 +15,11 @@ private:
     //
     std::vector<int> neuron_trace;
     //
-    std::vector<bool> neuron_output;
+    std::vector<char> neuron_output;
     //
-    std::vector<Neuron> neurons;
-
+    std::vector<Neuron *> neurons;
+    // Used to check running state
+    bool running;
     class Timer
     {
     private:
@@ -30,6 +31,7 @@ private:
         ~Timer(){
 
         };
+        int64_t start = ElapsedTime();
         // Return elasped time in microseconds
         int64_t ElapsedTime()
         {
@@ -55,7 +57,7 @@ public:
         //
         std::vector<int> neuron_trace;
         //
-        std::vector<bool> neuron_output;
+        std::vector<char> neuron_output;
     };
 
     void Start();

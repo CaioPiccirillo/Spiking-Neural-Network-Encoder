@@ -10,12 +10,12 @@ class Rate : public Neuron
 {
 private:
     //
-    int neuron_trace;
+    int *neuron_trace;
     //
-    bool neuron_output;
+    char *neuron_output;
 
 public:
-    Rate(int neuron_trace, bool neuron_output);
+    Rate(int *neuron_trace, char *neuron_output);
     ~Rate();
     void Start();
 };

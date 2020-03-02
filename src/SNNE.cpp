@@ -9,15 +9,37 @@ SNNE::SNNE(int number_of_neurons)
     // Begin outputs with zero
     std::fill(this->neuron_output.begin(), this->neuron_output.end(), 0);
 
-    std::cout << timer.ElapsedTime() << std::endl;
+    std::cout << timer.ElapsedTime() - timer.start << std::endl;
+    std::cout << timer.start << std::endl;
+    std::cout << timer.ElapsedTime() - timer.start << std::endl;
+    std::cout << timer.start << std::endl;
+    std::cout << timer.ElapsedTime() - timer.start << std::endl;
+    std::cout << timer.start << std::endl;
+    std::cout << timer.ElapsedTime() - timer.start << std::endl;
+    std::cout << timer.start << std::endl;
+    std::cout << timer.ElapsedTime() - timer.start << std::endl;
+    std::cout << timer.start << std::endl;
 }
 
 SNNE::~SNNE()
-{ /* data */
+{
+    for (std::vector<int>::size_type i = 0; i < neurons.size(); i++)
+    {
+        delete neurons[i];
+    }
 }
 
 void SNNE::Start()
 {
+    for (size_t c = 0; c < 3; c++)
+    {
+        for (std::vector<int>::size_type i = 0; i < neurons.size(); i++)
+        {
+            neurons[i]->Start();
+            std::cout << (int)neuron_output[i];
+        }
+        std::cout << std::endl;
+    }
 }
 
 void SNNE::Stop()
@@ -38,17 +60,16 @@ void SNNE::SetMode(int neuron_position, SNNE::Mode mode)
         switch (mode)
         {
         case SNNE::Mode::RateCode:
-            // TODO: Optimize using dynamic allocation of memory
             std::cout << " to rate code mode" << std::endl;
-            this->neurons[neuron_position] = Rate((this->neuron_trace[neuron_position]), (this->neuron_output[neuron_position]));
+            this->neurons[neuron_position] = new Rate(&(this->neuron_trace[neuron_position]), &(this->neuron_output[neuron_position]));
             break;
         case SNNE::Mode::PhaseCode:
             // TODO: Optimize using dynamic allocation of memory
-            this->neurons[neuron_position] = Phase((this->neuron_trace[neuron_position]), (this->neuron_output[neuron_position]));
+            this->neurons[neuron_position] = new Phase((this->neuron_trace[neuron_position]), (this->neuron_output[neuron_position]));
             break;
         case SNNE::Mode::PopulationCode:
             // TODO: Optimize using dynamic allocation of memory
-            this->neurons[neuron_position] = Population((this->neuron_trace[neuron_position]), (this->neuron_output[neuron_position]));
+            this->neurons[neuron_position] = new Population((this->neuron_trace[neuron_position]), (this->neuron_output[neuron_position]));
             break;
 
         default:

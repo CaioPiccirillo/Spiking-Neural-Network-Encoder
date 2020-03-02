@@ -9,11 +9,15 @@
 class Neuron
 {
 private:
-    /* data */
+    //
+    int neuron_trace;
+    //
+    char neuron_output;
 public:
-    Neuron(int *neuron_trace, bool *neuron_output);
+    Neuron(int *neuron_trace, char *neuron_output);
     Neuron();
     ~Neuron();
+    virtual void Start();
 };
 
 #endif 
